@@ -5,7 +5,7 @@ pipeline {
 		PROJECT_ID = 'sincere-blade-314120'
                 CLUSTER_NAME = 'sayilganman-k8s'
                 LOCATION = 'us-central1-c'
-                CREDENTIALS_ID = 'My First Project'		
+                CREDENTIALS_ID = 'kubernetes'		
 	}
 	
     stages {	

@@ -53,6 +53,7 @@ pipeline {
 		   sh 'ls -ltr'
 		   sh 'pwd'
                    sh "gcloud config set project jenkins-deploy@sincere-blade-314120.iam.gserviceaccount.com"
+                   sh "gcloud config set project 104616798359192407234"
                    sh "kubectl apply -f deployment.yaml"
 		   echo "Deployment Finished ..."
             }

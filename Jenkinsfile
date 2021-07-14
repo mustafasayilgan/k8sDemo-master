@@ -52,7 +52,7 @@ pipeline {
 		   sh 'ls -ltr'
 		   sh 'pwd'
 		   sh "gcloud container clusters get-credentials sayilganman-k8s --zone us-central1-c --project sincere-blade-314120"
-                   step([kubectl apply -f deployment.yaml])
+                   sh "kubectl apply -f deployment.yaml"
 		   echo "Deployment Finished ..."
             }
 	   }

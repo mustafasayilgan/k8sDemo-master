@@ -52,6 +52,7 @@ pipeline {
                    echo "Deployment started ..."
 		   sh 'ls -ltr'
 		   sh 'pwd'
+                   sh "gcloud container clusters get-credentials sayilganman-k8s --zone us-central1-c --project sincere-blade-314120"
                    sh "gcloud config set project 104616798359192407234"
                    sh "gcloud config set project jenkins-deploy@sincere-blade-314120.iam.gserviceaccount.com"
                    sh "kubectl apply -f deployment.yaml"

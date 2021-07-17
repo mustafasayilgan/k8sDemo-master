@@ -50,6 +50,7 @@ pipeline {
            stage('Deploy to K8s') { 
                 steps{
                    echo "Deployment started ..."
+                   sh "gcloud container clusters get-credentials sayilganman-k8s --zone us-central1-c --project sincere-blade-314120"
                    sh "gcloud config unset project"
                    sh "gcloud config set project sincere-blade-314120"
                    sh "gcloud config set project jenkins-deploy@sincere-blade-314120.iam.gserviceaccount.com"

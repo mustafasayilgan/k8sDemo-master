@@ -5,7 +5,7 @@ pipeline {
 		PROJECT_ID = 'sincere-blade-314120'
                 CLUSTER_NAME = 'sayilganman-k8s'
                 LOCATION = 'us-central1-c'
-                CREDENTIALS_ID = 'sincere-blade-314120'		
+                CREDENTIALS_ID = 'kubernetes'		
 	}
 	
     stages {	
@@ -50,12 +50,12 @@ pipeline {
            stage('Deploy to K8s') { 
                 steps{
                    echo "Deployment started ..."
-                   sh "gcloud container clusters get-credentials sayilganman-k8s --zone us-central1-c --project sincere-blade-314120"
-                   sh "gcloud config unset project"
-                   sh "gcloud config set project sincere-blade-314120"
-                   sh "gcloud config set project jenkins-deploy@sincere-blade-314120.iam.gserviceaccount.com"
-                   sh "kubectl apply -f deployment.yaml"
-		   echo "Deployment Finished ..."
+			    sh 'ls -ltr'
+			    sh 'pwd'
+			    sh "sed -i 's/tagversion/${env.BUILD_ID}/g' deployment.yaml"
+                   echo "Start deployment of deployment.yaml"
+			    step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+	           echo "Deployment Finished ..."
             }
 	   }
     }

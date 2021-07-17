@@ -50,7 +50,7 @@ pipeline {
            stage('Deploy to K8s') { 
                 steps{
                    echo "Deployment started ..."
-                   sh "gcloud config set project PROJECT_ID"
+                   sh "gcloud config unset project"
                    sh "gcloud config set project jenkins-deploy@sincere-blade-314120.iam.gserviceaccount.com"
                    sh "kubectl apply -f deployment.yaml"
 		   echo "Deployment Finished ..."

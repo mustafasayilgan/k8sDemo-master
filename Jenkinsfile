@@ -53,7 +53,8 @@ pipeline {
 		   sh 'ls -ltr'
 		   sh 'pwd'
                    sh "gcloud container clusters get-credentials sayilganman-k8s --zone us-central1-c --project sincere-blade-314120"
-                   sh "gcloud config set project sincere-blade-314120"
+                   sh "gcloud --quiet config set project ${PROJECT_ID}"
+                   sh "gcloud --quiet config set compute/zone ${LOCATION}"
                    sh "gcloud config set project jenkins-deploy@sincere-blade-314120.iam.gserviceaccount.com"
                    sh "kubectl apply -f deployment.yaml"
 		   echo "Deployment Finished ..."
